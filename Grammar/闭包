@@ -1,0 +1,31 @@
+闭包的条件：
+  * 必须有一个内嵌函数；内嵌函数必须引用外部函数中变量；外部函数返回值必须是内嵌函数。
+  * 例如：
+      移动棋子
+      def create(pos=[0,0]):
+        def player(direction,step):
+          new_x = pos[0] + direction[0]*step  
+          new_y = pos[1] + direction[1]*step  
+          pos[0] = new_x  
+          pos[1] = new_y   
+          return pos  
+        return player #返回内函数
+
+    player = create()  # 创建棋子player，起点为原点
+    print(player([1,0],10)) #输出[10, 0]
+    print(player([0,1],20)) #输出[10, 20]
+  
+闭包的实际：闭包=函数块（内嵌函数）+定义函数时的环境（外部变量）
+ 外部变量：
+  * a = create()  #a相当于内部函数player的函数名
+    a([1,0],10) #第一次调用player
+    a([0,1],20) #第二次调用player
+    这两次调用中，其实指向的是内存中同一块内嵌函数的地址，所以外部变量pos会被继承
+
+
+应用：
+  * 当闭包执行完后，仍然能够保持住当前的运行环境。
+    例如上述棋子函数中，如果用单个函数chess(position=,move=[]),返回值positon
+    每次都要重新输入position,太麻烦了。
+    
+  
