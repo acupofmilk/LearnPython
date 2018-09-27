@@ -1,0 +1,8 @@
+是python中有序列的6种内置类型，不是数组；
+
+1、添加列表中的元素
+  list.append(element):
+  list *= list:重复
+  list + 有序列的类型数据A（str,tuple）: 按照A的序列添加在后面
+  list.extend(有序列的内置类型)
+ 
