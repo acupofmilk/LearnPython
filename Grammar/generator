@@ -1,5 +1,0 @@
-1、与list比较：
-  list:罗列出了其包含的所有elements;data较大时，占用太多内存；
-  generator:按照某种算法推算建立element,循环的过程中不断推算出后续的元素，这样就不必创建完整的list.
-
-2、

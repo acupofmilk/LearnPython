@@ -1,0 +1,46 @@
+1、与list比较：
+  list:罗列出了其包含的所有elements;data较大时，占用太多内存；
+  generator:按照某种算法推算建立element,循环的过程中不断推算出后续的元素，这样就不必创建完整的list.
+
+2、iterable:
+  Python 中的对象只要定义了__iter__方法（该方法返回一个迭代器对象），或者定义了支持下标索引的__getitem__方法，那么这个对象就是可迭代对象。
+
+3、iterator:
+  * 任何对象只要定义了__iter__和__next__方法，那就是迭代器对象；迭代器表示一个惰性计算的序列，
+  需要__iter__返回迭代器自身，__next__返回迭代器中的下一个值，迭代到结尾时引发 StopIteration 异常；
+  * 惰性计算，所以迭代器不能用len(iterator)
+  *example:
+      class fib():
+    def __init__(self):
+        self.prev = 0
+        self.curr = 1
+    def __iter__(self):     #返回迭代器本身
+        return self
+    def __next__(self):     #返回下一个值
+        value = self.curr
+        self.curr += self.prev
+        self.prev = value
+        return self.curr
+    在这当中，类fib就是一个iterator
+  * for循环其实是调用__iter__获得迭代器，再调用__next__获取元素，迭代器内部状态保存在
+    当前实例对象的prev以及cur属性中，在下一次调用中将使用这两个属性。
+    
+ 4、generator:
+    * 生成器就是迭代器的一种特殊的迭代器，iterator是通过__next__依次次获得元素，
+      但是generator是通过yield依次获得元素，实现方式更为简单优雅。
+    * generator执行到yield 变量A语句 就中断，获得A的值，在next()或者for的情况下，
+      再从中断处继续执行；
+    * generator一般是通过定义函数fun,使得fun的值
+ 
+实现实例-斐波拉契数列：
+  def fun(max):
+    prev = 0
+    curr = 1
+    num = 0
+    while num < max:
+      yield curr
+      prev, curr = curr, prev + curr
+      num += 1 #这里不能用num++因为num代表的相当于是指针，而不是c语言中一样
+ f = fun(10)
+ for i in f:
+ print(i)
