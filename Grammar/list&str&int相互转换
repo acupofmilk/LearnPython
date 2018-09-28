@@ -1,0 +1,14 @@
+list转换成str：
+  join():
+    * list是字符型时：str = "".join(list)
+    * list是整数型时：str = "".join([str(x) for x in list])
+
+str转换成list:
+  * list(str)
+  * split()
+      * list = str.split()
+ 
+ str(list):不能将list转换成str
+ 
+ int和list/str之间的转换：
+  *int()&
