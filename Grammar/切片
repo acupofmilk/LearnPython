@@ -1,0 +1,6 @@
+list = ['a','b','c','d']
+1、a = list[num1:num2:num3]
+      * num1:从它开始
+      * num2:从num2结束
+      * num3:步长
+     当num为负整数时，num1默认是-1，num2默认是-len(list)-1
