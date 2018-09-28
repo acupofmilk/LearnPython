@@ -1,0 +1,28 @@
+普通的写入写出方式是：
+  with open('fileName','wb') as file: #with添加后就不需要人工的file.close()
+    file.write()
+    ...
+  这种只能以字符串的形式输入输出
+
+
+pickle:
+  * 打开文件类似： filename = open('file','wb')
+  * 载入数据： pickle.dump(obj, file, [,protocol])
+  * 读取数据： data = pickle.load(file)
+  
+
+pickle.dumps(obj[, protocol])
+  * 函数的功能：将obj对象序列化为string形式，而不是存入文件中。
+ 
+用pickle一次性载入多个数据：
+  * file = open("one.pkl",'wb')
+    pickle.dump(data1,file)
+    pickle.dump(data2,file)
+    pickle.close()
+  * 读出数据时，还是一次读出data1,data2:
+    file = open('one.pkl','rb')
+    dataA = pickle.load(file)
+    dataB = pickle.load(file)
+    file.close()
+    
+用pickle载入数据A到B.py中，A含有类文件c，B.py中要有c的定义；
