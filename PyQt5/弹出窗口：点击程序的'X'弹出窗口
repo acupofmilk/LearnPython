@@ -15,7 +15,7 @@ class Example(QWidget):
         self.setWindowTitle('Message box')
         self.show()
 
-    def closeEvent(self, event):
+    def closeEvent(self, event): #关闭QWidget，就会产生一个QCloseEvent。
 
         reply = QMessageBox.question(self, '弹出框的标题栏',"弹出框的对话栏", QMessageBox.Yes |QMessageBox.No, QMessageBox.No)
         #without the last QMessageBox.No, default button is the first.
