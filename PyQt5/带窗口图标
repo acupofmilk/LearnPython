@@ -8,7 +8,7 @@ class Example(QWidget):
     def __init__(self):
         super().__init__()
         
-        self.initUI()
+        self.initUI()   #define a required window.When Example is created, initUI will automatic operate.
         
         
     def initUI(self):
