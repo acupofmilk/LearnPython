@@ -1,0 +1,49 @@
+import sys
+from PyQt5.QtWidgets import QMainWindow, QAction, QApplication
+
+#!/usr/bin/python3
+# -*- coding: utf-8 -*-
+
+"""
+toggleMenu方法是特指QAction是否被勾选的方法;
+QAction的StatusTip，当鼠标停留其上才显示；
+"""
+
+class Example(QMainWindow):
+
+    def __init__(self):
+        super().__init__()
+
+        self.initUI()
+
+    def initUI(self):
+
+        self.statusbar = self.statusBar()
+        self.statusbar.showMessage('Ready')
+
+        menubar = self.menuBar()
+        viewMenu = menubar.addMenu('View')
+
+        viewStatAct = QAction('View statusbar', self, checkable=True)
+        viewStatAct.setStatusTip('View statusbar')
+        viewStatAct.setChecked(True)    #默认设置为选中状态
+        viewStatAct.triggered.connect(self.toggleMenu)
+
+        viewMenu.addAction(viewStatAct)
+
+        self.setGeometry(300, 300, 300, 200)
+        self.setWindowTitle('Check menu')
+        self.show()
+
+    def toggleMenu(self, state):    #toggleMenu方法是特指QAction是否被勾选的方法
+
+        if state:
+            self.statusbar.show()
+        else:
+            self.statusbar.hide()
+
+
+if __name__ == '__main__':
+    app = QApplication(sys.argv)
+    ex = Example()
+    sys.exit(app.exec_())
